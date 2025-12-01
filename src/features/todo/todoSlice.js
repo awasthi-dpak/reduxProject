@@ -10,9 +10,15 @@ const todoSlise=createSlice({
     initialState,
     reducers:{
         addTodo: (state,action)=>{
-                const todo={id:1,
-                text:"hello world"}
+                const todo={
+                    id:nanoid(),
+                    text:action.payload
+                }
+                state.todos.push(todo)
         },
-        removeTodo: ()=>{}
+
+        removeTodo: (state,action)=>{
+            state.todos=state.todos.filter((todo)=>todo.id!==action.payload)
+        }
     }
 })
